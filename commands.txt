@@ -1,0 +1,30 @@
+=== Kubernetes commands ===
+https://kubernetes.io/docs/reference/kubectl/cheatsheet/
+
+kubectl get (pods|services)
+
+kubectl describe pod [pod]
+
+kubectl apply -f deployment.yml
+
+kubectl create -f deployment.yml
+
+kubectl expose deployment kubefun-deployment --type=NodePort
+
+kubectl scale --replicas=4 deployment/kubefun-deployment
+
+kubectl expose deployment kubefun-deployment --type=LoadBalancer --port=3000 --target-port=3000 --name kubefun-load-balancer
+
+minikube service kubefun-load-balancer
+
+kubectl attach
+
+kubectl exec
+
+=== Docker commands ===
+
+docker build -t <your username>/node-web-app .
+
+docker run -p [localPort]:[appPort] -d [image]
+
+docker push [imageName]

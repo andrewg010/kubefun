@@ -1,0 +1,20 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kubefun-deployment
+spec:
+  selector:
+    matchLabels:
+      app: kubefun
+  replicas: 4
+  template:
+    metadata:
+      labels:
+        app: kubefun
+    spec:
+      containers:
+        - name: kubefun
+          image: andrewg010/kubefun
+          ports:
+            - containerPort: 3000

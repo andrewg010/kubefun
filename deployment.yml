@@ -1,0 +1,40 @@
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: kubefun-service
+spec:
+  selector:
+    app: kubefun
+  ports:
+    - protocol: "TCP"
+      # Port accessible inside cluster
+      port: 3000
+      # Port to forward to inside the pod
+      targetPort: 80
+      # Port accessible outside cluster
+      nodePort: 30003
+  type: LoadBalancer
+
+
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kubefundeployment
+spec:
+  selector:
+    matchLabels:
+      app: kubefun
+  replicas: 5
+  template:
+    metadata:
+      labels:
+        app: kubefun
+    spec:
+      containers:
+        - name: myapp
+          image: andrewg010/kubefun
+          ports:
+            - containerPort: 80
